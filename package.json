@@ -1,15 +1,11 @@
 {
-  "name": "parcial_aslhly",
+  "name": "playwright-tests-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:report": "playwright test --reporter=html && playwright show-report"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.55.0"
+    "@playwright/test": "^1.46.0"
   }
 }
