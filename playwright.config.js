@@ -1,10 +1,10 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   timeout: 30 * 1000,
-  retries: 1,               // Reintenta 1 vez si falla (reduce flaky tests)
+  retries: 1, // Reintenta 1 vez si falla
   reporter: [
-    ['list'],               // Salida en consola
+    ['list'], // Salida en consola
     ['html', { outputFolder: 'playwright-report', open: 'never' }]
   ],
   use: {
@@ -14,10 +14,13 @@ export default defineConfig({
     video: 'retain-on-failure',
     trace: 'on-first-retry'
   },
-  // Ejecuta pruebas en paralelo en diferentes navegadores
   projects: [
-    { name: 'Chromium', use: { browserName: 'chromium' } },
-    { name: 'Firefox',  use: { browserName: 'firefox'  } },
-    { name: 'WebKit',   use: { browserName: 'webkit'   } }
+    {
+      name: 'Google Chrome',
+      use: { 
+        ...devices['Desktop Chrome'], 
+        channel: 'chrome' // fuerza Chrome estable
+      }
+    }
   ]
 });
